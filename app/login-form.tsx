@@ -1,6 +1,7 @@
 import { Eye, EyeOff, Lock, Smartphone, User } from 'lucide-react-native';
 import React, { useState } from 'react';
 import { ActivityIndicator, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { useRouter } from 'expo-router';
 
 export default function LoginForm() {
   const [username, setUsername] = useState('');
@@ -27,6 +28,7 @@ export default function LoginForm() {
     const success = await login(username, password);
     if (success) {
       alert('Login berhasil!');
+      useRouter().replace('/(tabs)/dashboard');
     } else {
       alert('Username atau password salah');
     }
