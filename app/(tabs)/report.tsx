@@ -1,5 +1,5 @@
 import { AlertTriangle, CheckCircle, Clock, Filter, XCircle } from "lucide-react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 // Dummy data, copy from dashboard.tsx
@@ -183,7 +183,14 @@ function StatBox({ label, value, color }: { label: string; value: number; color:
 export default function Report() {
   const [reportType, setReportType] = useState<"daily" | "weekly" | "monthly" | "yearly">("daily");
   const [selectedDate] = useState("2024-01-15");
-  const [currentTime] = useState(new Date());
+    const [currentTime, setCurrentTime] = useState(new Date());
+  
+    useEffect(() => {
+      const timer = setInterval(() => {
+        setCurrentTime(new Date());
+      }, 1000); // update setiap detik
+      return () => clearInterval(timer);
+    }, []);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#f9fafb" }}>

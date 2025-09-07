@@ -1,5 +1,5 @@
 import { Calendar, TrendingUp } from "lucide-react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Image, SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 
 const user = {
@@ -109,7 +109,14 @@ function getStatusStyle(status: string) {
 }
 
 export default function Dashboard() {
-  const currentTime = new Date();
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000); // update setiap detik
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#f9fafb" }}>
