@@ -188,7 +188,7 @@ export default function Report() {
     useEffect(() => {
       const timer = setInterval(() => {
         setCurrentTime(new Date());
-      }, 1000); // update setiap detik
+      }, 1000);
       return () => clearInterval(timer);
     }, []);
 
@@ -337,6 +337,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,0.08)",
     borderRadius: 12,
     paddingVertical: 10,
+    paddingHorizontal: 100,
     alignItems: "center",
     marginTop: 16,
   },
